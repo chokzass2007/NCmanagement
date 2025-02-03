@@ -12,6 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+           // ลงทะเบียน Middleware ที่คุณสร้างเอง
+           $middleware->alias([
+            'check.permission' => \App\Http\Middleware\CheckPermission::class,
+        ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

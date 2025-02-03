@@ -13,10 +13,12 @@ class Role extends Model
         return $this->belongsToMany(User::class, 'user_roles');
     }
 
+
     public function permissions()
     {
-        return $this->belongsToMany(Permission::class, 'role_program_permission');
+        return $this->belongsToMany(Permission::class, 'role_program_permission')->withPivot('program_id');
     }
+
 
     public function programs()
     {

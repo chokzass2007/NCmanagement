@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Controller;
 /*
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 ////////////////////////////////////////////////////////////////////////////////////////
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,6 +20,15 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('/test', [Controller::class, 'viewProgramA']);
+
+Route::get('/programnameA', [Controller::class, 'viewProgramA'])
+    ->middleware('check.permission:ProgramA,ProgramA');
+
+    Route::get('/programnameB/edit', [Controller::class, 'editProgramB'])
+    ->middleware('check.permission:edit_programname,programnameB');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Permission;
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Models\Program;
 use App\Models\User;
 
-use Illuminate\Http\Request;
-
-//use App\Models\Table;//เทเบิลที่ต้องการใช้
-
-class PermissionRepository
+class TestController extends Controller
 {
-    // Your repository logic here
-    public function viewProgramA(Request $request)
+    public function viewProgramAA(Request $request)
     {
-        $user = $request->user();
-        $program = Program::where('name', 'ProgramA')->first();
 
-        if ($user->hasPermission('ProgramA', $program)) {
+        $user = $request->user();
+        // dd($user);
+        $program = Program::where('name', 'ProgramA')->first();
+        
+        // dd($user->hasPermission('ProgramA', $program));
+        if ($user->hasPermission('view', $program)) {
             // แสดงโปรแกรม
             return view('programA');
         } else {
@@ -25,10 +25,10 @@ class PermissionRepository
         }
     }
 
-    public function editProgramB(Request $request)
+    public function editProgramBB(Request $request)
     {
         $user = $request->user();
-        $program = Program::where('name', 'ProgramB')->first();
+        $program = Program::where('name', 'programnameB')->first();
 
         if ($user->hasPermission('edit_programname', $program)) {
             // แก้ไขโปรแกรม

@@ -36,6 +36,7 @@ class User extends Authenticatable
     public function hasPermission($permission, $program)
     {
         foreach ($this->roles as $role) {
+            // dd($role->permissions()->where('name', $permission)->where('program_id', $program->id)->exists());
             if ($role->permissions()->where('name', $permission)->where('program_id', $program->id)->exists()) {
                 return true;
             }
