@@ -25,10 +25,10 @@ Route::get('/dashboard', function () {
 Route::get('/test', [Controller::class, 'viewProgramA']);
 
 Route::get('/programnameA', [Controller::class, 'viewProgramA'])
-    ->middleware('check.permission:ProgramA,ProgramA');
+    ->middleware('check.permission:view_programname,programnameA');
 
     Route::get('/programnameB/edit', [Controller::class, 'editProgramB'])
-    ->middleware('check.permission:edit_programname,programnameB');
+    ->middleware('check.permission:editor,programnameB');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

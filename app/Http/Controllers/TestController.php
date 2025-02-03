@@ -8,21 +8,33 @@ use App\Models\User;
 
 class TestController extends Controller
 {
+    // public function viewProgramAA(Request $request)
+    // {
+
+    //     $user = $request->user();
+    //     // dd($user);
+    //     $program = Program::where('name', 'ProgramA')->first();
+        
+    //     // dd($user->hasPermission('ProgramA', $program));
+    //     if ($user->hasPermission('view', $program)) {
+    //         // แสดงโปรแกรม
+    //         return view('programA');
+    //     } else {
+    //         // ไม่อนุญาต
+    //         abort(403);
+    //     }
+    // }
+
     public function viewProgramAA(Request $request)
     {
+        // dd($request);
+        $program = Program::where('name', 'programnameA')->first();
 
-        $user = $request->user();
-        // dd($user);
-        $program = Program::where('name', 'ProgramA')->first();
-        
-        // dd($user->hasPermission('ProgramA', $program));
-        if ($user->hasPermission('view', $program)) {
-            // แสดงโปรแกรม
-            return view('programA');
-        } else {
-            // ไม่อนุญาต
-            abort(403);
+        if (!$program) {
+            abort(404, 'Program not found.');
         }
+
+        return view('programA');
     }
 
     public function editProgramBB(Request $request)
@@ -30,9 +42,9 @@ class TestController extends Controller
         $user = $request->user();
         $program = Program::where('name', 'programnameB')->first();
 
-        if ($user->hasPermission('edit_programname', $program)) {
+        if ($user->hasPermission('editor', $program)) {
             // แก้ไขโปรแกรม
-            return view('editProgramB');
+            return view('programB');
         } else {
             // ไม่อนุญาต
             abort(403);

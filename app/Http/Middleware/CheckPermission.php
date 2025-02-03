@@ -4,18 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Models\Program;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Log;
 class CheckPermission
 {
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
     public function handle(Request $request, Closure $next, $permission, $programName)
     {
         // ตรวจสอบว่าผู้ใช้ล็อกอินอยู่หรือไม่
@@ -25,14 +19,28 @@ class CheckPermission
 
         // ค้นหาโปรแกรมจากชื่อ
         $program = Program::where('name', $programName)->first();
-        
+
         // ตรวจสอบว่าโปรแกรมมีอยู่หรือไม่
         if (!$program) {
+            Log::error('Program not found:', ['programName' => $programName]);
             abort(404, 'Program not found.');
         }
-// dd( $permission, $program);
+
+        // Log ข้อมูลสำหรับ Debug
+        Log::info('Checking permission:', [
+            'user_id' => $request->user()->id,
+            'permission' => $permission,
+            'program_id' => $program->id,
+            'program_name' => $program->name,
+        ]);
+// dd($program);
         // ตรวจสอบสิทธิ์ของผู้ใช้
         if (!$request->user()->hasPermission($permission, $program)) {
+            Log::warning('User does not have permission:', [
+                'user_id' => $request->user()->id,
+                'permission' => $permission,
+                'program_id' => $program->id,
+            ]);
             abort(403, 'Unauthorized: User does not have permission.');
         }
 

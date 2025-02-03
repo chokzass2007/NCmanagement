@@ -17,4 +17,5 @@ class Program extends Model
     {
         return $this->belongsToMany(Permission::class, 'role_program_permission');
     }
+    
 }

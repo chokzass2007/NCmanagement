@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 {
     public function viewProgramA(TestController $testController, Request $request)
     {
+        // dd($request);
         return $testController->viewProgramAA($request);
     }
 

@@ -28,15 +28,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_roles');
     }
 
-    public function hasRole($role)
-    {
-        return $this->roles->contains('name', $role);
-    }
-
     public function hasPermission($permission, $program)
     {
+        // ตรวจสอบว่าผู้ใช้มีบทบาทที่เกี่ยวข้องกับโปรแกรมและสิทธิ์หรือไม่
         foreach ($this->roles as $role) {
-            // dd($role->permissions()->where('name', $permission)->where('program_id', $program->id)->exists());
             if ($role->permissions()->where('name', $permission)->where('program_id', $program->id)->exists()) {
                 return true;
             }
