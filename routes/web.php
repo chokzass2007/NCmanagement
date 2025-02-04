@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Permission\PermissionController;
 /*
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -22,13 +23,19 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+Route::middleware(['auth', 'check.permission:view_programname,programnameA'])->group(function () {
+    Route::get('/programnameA', [Controller::class, 'viewProgramA']);
+    Route::get('/Management', [PermissionController::class, 'index']);
+});
+
 Route::get('/test', [Controller::class, 'viewProgramA']);
 
-Route::get('/programnameA', [Controller::class, 'viewProgramA'])
-    ->middleware('check.permission:view_programname,programnameA');
 
-    Route::get('/programnameB/edit', [Controller::class, 'editProgramB'])
-    ->middleware('check.permission:editor,programnameB');
+// Route::get('/programnameA', [Controller::class, 'viewProgramA'])
+//     ->middleware('check.permission:view_programname,programnameA');
+
+//     Route::get('/programnameB/edit', [Controller::class, 'editProgramB'])
+//     ->middleware('check.permission:editor,programnameB');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
