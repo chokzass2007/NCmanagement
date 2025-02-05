@@ -31,7 +31,7 @@ class User extends Authenticatable
     public function hasPermission($permission, $program)
     {
         // ตรวจสอบว่าผู้ใช้มีบทบาทที่เกี่ยวข้องกับโปรแกรมและสิทธิ์หรือไม่
-        foreach ($this->roles as $role) {
+        foreach ($this->roles as $role) { 
             if ($role->permissions()->where('name', $permission)->where('program_id', $program->id)->exists()) {
                 return true;
             }

@@ -17,7 +17,7 @@ class PermissionRepository
     {
         $user = $request->user();
         $program = Program::where('name', 'ProgramA')->first();
-
+// dd($program);
         if ($user->hasPermission('ProgramA', $program)) {
             // แสดงโปรแกรม
             return view('programA');
@@ -41,31 +41,7 @@ class PermissionRepository
         }
     }
 
-    public function indexx()
-    {
-        $roles = Role::all();
-        $programs = Program::all();
-        $permissions = Permission::all();
 
-        return view('ProgramA', compact('roles', 'programs', 'permissions'));
-    }
 
-    public function storee(Request $request)
-    {
-        $roleId = $request->role_id;
-        $programId = $request->program_id;
-        $permissionIds = $request->permissions;
-
-        foreach ($permissionIds as $permissionId) {
-            DB::table('role_program_permission')->insert([
-                'role_id' => $roleId,
-                'program_id' => $programId,
-                'permission_id' => $permissionId,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
-
-        return redirect()->back()->with('success', 'Permissions assigned successfully!');
-    }
+   
 }

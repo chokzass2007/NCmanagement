@@ -44,15 +44,15 @@
                 </a>
 
                 <!-- Users Link -->
-                <a href="#" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
+                <a href="{{route('Management')}}" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                     <i class="fas fa-users" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
                     <span x-show="isOpen" class="font-medium">Users</span>
                 </a>
 
                 <!-- Analytics Link -->
-                <a href="#" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
+                <a href="{{route('setPermission.program')}}" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                     <i class="fas fa-chart-line" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
-                    <span x-show="isOpen" class="font-medium">Analytics</span>
+                    <span x-show="isOpen" class="font-medium">Manage Programs</span>
                 </a>
 
                 <!-- Projects Link -->

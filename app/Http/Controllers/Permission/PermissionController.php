@@ -18,7 +18,6 @@ class PermissionController extends BaseController
 //}
  public function index(PermissionRepository $permissionRepository)
  {
-     return $permissionRepository->indexx();
    
  } 
 }
