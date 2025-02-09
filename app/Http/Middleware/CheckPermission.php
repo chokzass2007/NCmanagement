@@ -34,6 +34,7 @@ class CheckPermission
             'program_name' => $program->name,
         ]);
 // dd($program);
+
         // ตรวจสอบสิทธิ์ของผู้ใช้
         if (!$request->user()->hasPermission($permission, $program)) {
             Log::warning('User does not have permission:', [
