@@ -37,7 +37,7 @@
         <nav class="mt-4 flex-1 px-2">
             <div class="space-y-1">
                 <!-- Dashboard Link -->
-                <a href="#" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
+                <a href="{{route('home')}}" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                     <i class="fas fa-home" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
                     <span x-show="isOpen" class="font-medium">Dashboard</span>
                     <span x-show="isOpen" class="ml-auto bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded-full text-xs">New</span>
