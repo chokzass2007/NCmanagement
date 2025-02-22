@@ -1,9 +1,6 @@
 @extends('layouts.admin')
 
-{{-- @php
-$debugPermission =hasPermission('Management', 'edit');
-dd($debugPermission);
-@endphp --}}
+
 @section('content')
     <div class="flex justify-center items-center min-h-[80vh] bg-gray-50">
         <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-2xl border border-gray-100">
@@ -21,6 +18,9 @@ dd($debugPermission);
 
                     @if (hasPermission('Management', 'Editor'))
                     <button class="bg-blue-600 text-white px-4 py-2 rounded">Edit</button>
+                    @endif
+                    @if (hasPermission('Management', 'View'))
+                    <button class="bg-yellow-600 text-white px-4 py-2 rounded">View</button>
                     @endif
                 </div>
             </div>
