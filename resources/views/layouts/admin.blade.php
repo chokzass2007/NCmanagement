@@ -81,8 +81,8 @@
             <div class="flex items-center" x-show="isOpen">
                 <img src="https://ui-avatars.com/api/?name=Admin+User" class="w-8 h-8 rounded-full">
                 <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-700">Admin User</p>
-                    <p class="text-xs text-gray-500">admin@example.com</p>
+                    <p class="text-sm font-medium text-gray-700">{{Auth::user()->name}}</p>
+                    <p class="text-xs text-gray-500">{{Auth::user()->email}}</p>
                 </div>
             </div>
             <div x-show="!isOpen" class="flex justify-center">
@@ -114,6 +114,15 @@
         <main class="p-6">
             @yield('content')
         </main>
+        <!-- Footer -->
+        {{-- <footer class="text-black text-center p-4"> --}}
+            <footer class="bg-gray-900 text-black text-center p-4">
+                © Copyright 2025 by Numchok. Licensed under 
+                <a href="https://en.wikipedia.org/wiki/Creative_Commons_NonCommercial_license" target="_blank" class="text-blue-500 underline">
+                    CC BY-NC 4.0
+                </a>. Free to share but not for commercial use.
+        </footer>
+        
     </div>
 </div>
 
