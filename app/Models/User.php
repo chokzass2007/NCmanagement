@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    protected $guarded = ['id'];
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'user_roles');

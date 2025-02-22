@@ -10,6 +10,7 @@ class RoleProgramPermission extends Model
 
     protected $table = 'role_program_permission'; // ชื่อตารางที่ถูกต้อง
     protected $fillable = ['role_id', 'program_id', 'permission_id'];
+    protected $guarded = ['id'];
     public function role()
     {
         return $this->belongsTo(Role::class);
