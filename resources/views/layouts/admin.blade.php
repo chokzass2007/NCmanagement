@@ -20,9 +20,9 @@
         <div class="p-4 flex items-center justify-between border-b border-gray-100">
             <div class="flex items-center space-x-3" x-show="isOpen">
                 <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-xl">A</span>
+                    <span class="text-white font-bold text-xl">NC</span>
                 </div>
-                <span class="text-lg font-semibold text-gray-800">Admin Pro</span>
+                <span class="text-lg font-semibold text-gray-800">NCmanagement</span>
             </div>
             <button 
                 @click="isOpen = !isOpen" 
@@ -68,7 +68,7 @@
                     Settings
                 </h3>
                 <div class="mt-2 space-y-1">
-                    <a href="#" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
+                    <a href="{{route('profile.edit')}}" class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                         <i class="fas fa-cog" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
                         <span x-show="isOpen" class="font-medium">Settings</span>
                     </a>
@@ -116,8 +116,8 @@
         </main>
         <!-- Footer -->
         {{-- <footer class="text-black text-center p-4"> --}}
-            <footer class="bg-gray-900 text-black text-center p-4">
-                © Copyright 2025 by Numchok. Licensed under 
+            <footer class=" text-black text-center p-4">
+                © Copyright 2025 by <a class="text-blue-500 underline" href="https://www.facebook.com/CJdc2011/" target="_blank">Numchok.</a> Licensed under 
                 <a href="https://en.wikipedia.org/wiki/Creative_Commons_NonCommercial_license" target="_blank" class="text-blue-500 underline">
                     CC BY-NC 4.0
                 </a>. Free to share but not for commercial use.
