@@ -14,6 +14,11 @@ class ManagementController extends BaseController
         return $programRepository->main();
     }
 
+    public function ManageProgram(ProgramRepository $programRepository)
+    {
+        return $programRepository->ManageProgram();
+    }
+
     public function program(ProgramRepository $programRepository)
     {
         return $programRepository->program();
@@ -32,5 +37,10 @@ class ManagementController extends BaseController
     public function ManagementStore(ProgramRepository $programRepository, Request $request)
     {
         return $programRepository->ManagementStore($request);
+    }
+
+    public function removePermission(ProgramRepository $programRepository, Request $request)
+    {
+        return $programRepository->removePermission($request);
     }
 }
