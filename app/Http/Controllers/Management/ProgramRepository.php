@@ -25,25 +25,20 @@ class ProgramRepository
     }
     public function ManageProgram()
     {
-        $permissions = DB::table('role_program_permission')
-        ->join('programs', 'role_program_permission.program_id', '=', 'programs.id')
-        ->join('roles', 'role_program_permission.role_id', '=', 'roles.id')
-        ->join('permissions', 'role_program_permission.permission_id', '=', 'permissions.id')
-        ->join('user_roles', 'roles.id', '=', 'user_roles.role_id')
+        $permissions = DB::table('role_program_permission as rpp')
+        ->join('roles', 'rpp.role_id', '=', 'roles.id')
+        ->join('programs', 'rpp.program_id', '=', 'programs.id')
+        ->join('permissions', 'rpp.permission_id', '=', 'permissions.id')
+        ->join('user_roles', 'rpp.role_id', '=', 'user_roles.role_id')
         ->join('users', 'user_roles.user_id', '=', 'users.id')
         ->select(
-            'role_program_permission.id',
-            'role_program_permission.role_id',
-            'role_program_permission.program_id',
-            'role_program_permission.permission_id',
-            'role_program_permission.created_at',
-            'role_program_permission.updated_at',
-            'permissions.name as permission_name',
+            'rpp.id', 
+            'users.name as user_name',
             'roles.name as role_name',
             'programs.name as program_name',
-            'users.name as user_name'
+            'permissions.name as permission_name'
         )
-        ->orderBy('users.name', 'desc')
+        ->orderBy('users.name')
         ->get();
     
 
@@ -112,8 +107,7 @@ class ProgramRepository
 
         // ✅ **เช็คว่า role มีสิทธิ์ในโปรแกรมนี้หรือยัง**
         foreach ($permissions as $permissionId) {
-            $exists = RoleProgramPermission::where('user_id', $roleId)
-                ->where('program_id', $programId)
+            $exists = RoleProgramPermission::where('role_id', $roleId)
                 ->where('program_id', $programId)
                 ->where('permission_id', $permissionId)
                 ->exists();
