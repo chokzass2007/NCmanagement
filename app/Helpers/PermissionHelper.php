@@ -23,7 +23,7 @@ if (!function_exists('hasPermission')) {
         if (!$permission) {
             return false;
         }
-
+               
         // เปลี่ยนเป็น whereIn เพื่อรองรับหลาย role
         return RoleProgramPermission::whereIn('role_id', $user->roles->pluck('id')->toArray())
             ->where('program_id', $program->id)

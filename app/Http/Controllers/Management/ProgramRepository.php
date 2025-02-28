@@ -25,12 +25,29 @@ class ProgramRepository
     }
     public function ManageProgram()
     {
-        $users = User::all();
-        $roles = Role::all();
-        $programs = Program::all();
-        $permissions = Permission::all();
+        $permissions = DB::table('role_program_permission')
+        ->join('programs', 'role_program_permission.program_id', '=', 'programs.id')
+        ->join('roles', 'role_program_permission.role_id', '=', 'roles.id')
+        ->join('permissions', 'role_program_permission.permission_id', '=', 'permissions.id')
+        ->join('user_roles', 'roles.id', '=', 'user_roles.role_id')
+        ->join('users', 'user_roles.user_id', '=', 'users.id')
+        ->select(
+            'role_program_permission.id',
+            'role_program_permission.role_id',
+            'role_program_permission.program_id',
+            'role_program_permission.permission_id',
+            'role_program_permission.created_at',
+            'role_program_permission.updated_at',
+            'permissions.name as permission_name',
+            'roles.name as role_name',
+            'programs.name as program_name',
+            'users.name as user_name'
+        )
+        ->orderBy('users.name', 'desc')
+        ->get();
+    
 
-        return view('admin.ManageProgram', compact('roles', 'programs', 'permissions', 'users'));
+        return view('admin.ManageProgram', compact('permissions'));
     }
     public function program()
     {
@@ -120,23 +137,11 @@ class ProgramRepository
     public function removePermission(Request $request)
     {
         $validated = $request->validate([
-            'user_id'     => 'required|exists:users,id',
-            'role_id'     => 'required|exists:roles,id',
-            'program_id'  => 'required|exists:programs,id',
-            'permissions' => 'required|array',
+            'id' => 'required|exists:role_program_permission,id',
         ]);
-
-        // ค้นหาผู้ใช้
-        $user = User::find($request->user_id);
-
-        // ค้นหา Role ของผู้ใช้
-        $role = $user->roles()->where('roles.id', $request->role_id)->first();
-
-        if ($role) {
-            // ลบเฉพาะสิทธิ์ที่ถูกเลือกออกจาก Role นี้
-            $role->permissions()->detach($request->permissions);
-        }
-
-        return redirect()->back()->with('success', 'Selected permissions removed successfully!');
+    
+        DB::table('role_program_permission')->where('id', $request->id)->delete();
+    
+        return redirect()->back()->with('success', 'Permission removed successfully!');
     }
 }
