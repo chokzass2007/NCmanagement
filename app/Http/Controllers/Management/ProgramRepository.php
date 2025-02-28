@@ -112,13 +112,15 @@ class ProgramRepository
 
         // ✅ **เช็คว่า role มีสิทธิ์ในโปรแกรมนี้หรือยัง**
         foreach ($permissions as $permissionId) {
-            $exists = RoleProgramPermission::where('role_id', $roleId)
+            $exists = RoleProgramPermission::where('user_id', $roleId)
+                ->where('program_id', $programId)
                 ->where('program_id', $programId)
                 ->where('permission_id', $permissionId)
                 ->exists();
-
+// dd($userId, $roleId, $programId, $permissionId);
             if (!$exists) {
                 RoleProgramPermission::create([
+                    'user_id' => $userId,
                     'role_id' => $roleId,
                     'program_id' => $programId,
                     'permission_id' => $permissionId,
