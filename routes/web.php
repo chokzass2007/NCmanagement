@@ -39,7 +39,7 @@ Route::middleware(['auth', 'check.permission:View,Management'])->group(function 
     // Delete
     Route::post('/remove-permission', [ManagementController::class, 'removePermission'])->name('removePermission');
     Route::delete('/admin/programs/{id}', [ManagementController::class, 'destroy'])->name('programs.destroy');
-    Route::delete('/admin/permission/{id}', [ManagementController::class, 'destroyPermission'])->name('permission.destroy');
+    Route::delete('/admin/permissions/{id}', [ManagementController::class, 'destroyPermission'])->name('permission.destroy');
     
 });
 
