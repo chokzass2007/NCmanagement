@@ -26,21 +26,21 @@ class ProgramRepository
     public function ManageProgram()
     {
         $permissions = DB::table('role_program_permission as rpp')
-        ->join('roles', 'rpp.role_id', '=', 'roles.id')
-        ->join('programs', 'rpp.program_id', '=', 'programs.id')
-        ->join('permissions', 'rpp.permission_id', '=', 'permissions.id')
-        ->join('user_roles', 'rpp.role_id', '=', 'user_roles.role_id')
-        ->join('users', 'user_roles.user_id', '=', 'users.id')
-        ->select(
-            'rpp.id', 
-            'users.name as user_name',
-            'roles.name as role_name',
-            'programs.name as program_name',
-            'permissions.name as permission_name'
-        )
-        ->orderBy('users.name')
-        ->get();
-    
+            ->join('roles', 'rpp.role_id', '=', 'roles.id')
+            ->join('programs', 'rpp.program_id', '=', 'programs.id')
+            ->join('permissions', 'rpp.permission_id', '=', 'permissions.id')
+            ->join('user_roles', 'rpp.role_id', '=', 'user_roles.role_id')
+            ->join('users', 'user_roles.user_id', '=', 'users.id')
+            ->select(
+                'rpp.id',
+                'users.name as user_name',
+                'roles.name as role_name',
+                'programs.name as program_name',
+                'permissions.name as permission_name'
+            )
+            ->orderBy('users.name')
+            ->get();
+
 
         return view('admin.ManageProgram', compact('permissions'));
     }
@@ -48,6 +48,11 @@ class ProgramRepository
     {
         $programs = Program::all();
         return view('admin.Program', compact('programs'));
+    }
+    public function permission()
+    {
+        $permission = Permission::all();
+        return view('admin.permission', compact('permission'));
     }
     // Your repository logic here
     public function storePermission(Request $request)
@@ -83,6 +88,11 @@ class ProgramRepository
         Program::updateOrCreate(['id' => $request->id], ['name' => $request->name]);
         return redirect()->back()->with('success', 'Program saved!');
     }
+    public function storePermissions(Request $request)
+    {
+        Permission::updateOrCreate(['id' => $request->id], ['name' => $request->name]);
+        return redirect()->back()->with('success', 'Program saved!');
+    }
     public function ManagementStore(Request $request)
     {
         $validated = $request->validate([
@@ -111,7 +121,7 @@ class ProgramRepository
                 ->where('program_id', $programId)
                 ->where('permission_id', $permissionId)
                 ->exists();
-// dd($userId, $roleId, $programId, $permissionId);
+            // dd($userId, $roleId, $programId, $permissionId);
             if (!$exists) {
                 RoleProgramPermission::create([
                     'user_id' => $userId,
@@ -130,14 +140,19 @@ class ProgramRepository
         Program::find($id)->delete();
         return redirect()->back()->with('success', 'Program deleted!');
     }
+    public function destroyPermission($id)
+    {
+        Permission::find($id)->delete();
+        return redirect()->back()->with('success', 'Program deleted!');
+    }
     public function removePermission(Request $request)
     {
         $validated = $request->validate([
             'id' => 'required|exists:role_program_permission,id',
         ]);
-    
+
         DB::table('role_program_permission')->where('id', $request->id)->delete();
-    
+
         return redirect()->back()->with('success', 'Permission removed successfully!');
     }
 }

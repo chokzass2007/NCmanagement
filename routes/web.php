@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\Management\ManagementController;
 /*
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -32,13 +31,19 @@ Route::middleware(['auth', 'check.permission:View,Management'])->group(function 
 
     Route::get('/admin/Management', [ManagementController::class, 'index'])->name('Management');
     Route::post('/admin/ManagementStore', [ManagementController::class, 'ManagementStore'])->name('ManagementStore');
-    Route::get('/admin/setPermission', [ManagementController::class, 'program'])->name('setPermission.program');
-    Route::post('/admin/setPermissions', [ManagementController::class, 'store'])->name('programs.store');
+
+    Route::get('/admin/setPermission', [ManagementController::class, 'permission'])->name('setPermission.permission');
+    Route::post('/admin/setPermissions', [ManagementController::class, 'storePermission'])->name('permission.store');
+
+    Route::get('/admin/setProgram', [ManagementController::class, 'program'])->name('setPermission.program');
+    Route::post('/admin/setPrograms', [ManagementController::class, 'store'])->name('programs.store');
+
     Route::get('/admin/ManageProgram', [ManagementController::class, 'ManageProgram'])->name('ManageProgram');
 
     // Delete
     Route::post('/remove-permission', [ManagementController::class, 'removePermission'])->name('removePermission');
     Route::delete('/admin/programs/{id}', [ManagementController::class, 'destroy'])->name('programs.destroy');
+    Route::delete('/admin/permission/{id}', [ManagementController::class, 'destroyPermission'])->name('permission.destroy');
     
 });
 

@@ -23,15 +23,23 @@ class ManagementController extends BaseController
     {
         return $programRepository->program();
     }
+    public function permission(ProgramRepository $programRepository)
+    {
+        return $programRepository->permission();
+    }
 
     public function destroy(ProgramRepository $programRepository, $id)
     {
         return $programRepository->destroyProgram($id);
     }
-
-    public function store(ProgramRepository $programRepository, Request $request)
+    public function destroyPermission(ProgramRepository $programRepository, $id)
     {
-        return $programRepository->store($request);
+        return $programRepository->destroyPermission($id);
+    }
+
+    public function storePermission(ProgramRepository $programRepository, Request $request)
+    {
+        return $programRepository->storePermissions($request);
     }
     
     public function ManagementStore(ProgramRepository $programRepository, Request $request)

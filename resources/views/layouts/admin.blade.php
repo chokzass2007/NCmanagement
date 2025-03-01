@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Admin Dashboard</title>
+    <title>NC Management</title>
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js" defer></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
         <!-- Sidebar -->
         <div :class="isOpen ? 'w-64' : 'w-20'"
             class="bg-white shadow-lg min-h-screen transition-all duration-300 flex flex-col border-r border-gray-100 relative">
-            
+
             <!-- Logo Section -->
             <div class="p-4 flex items-center justify-between border-b border-gray-100">
                 <div class="flex items-center space-x-3" x-show="isOpen">
@@ -30,7 +30,7 @@
                     <i class="fas fa-bars text-gray-600"></i>
                 </button>
             </div>
-    
+
             <!-- Navigation -->
             <nav class="mt-4 flex-1 px-2 overflow-y-auto">
                 <div class="space-y-1">
@@ -40,29 +40,35 @@
                         <i class="fas fa-home" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
                         <span x-show="isOpen" class="font-medium">Dashboard</span>
                     </a>
-    
+
                     <!-- Users Link -->
                     <a href="{{ route('Management') }}"
                         class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                         <i class="fas fa-users" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
                         <span x-show="isOpen" class="font-medium">Users</span>
                     </a>
-    
+
                     <!-- Projects Link -->
                     <a href="{{ route('setPermission.program') }}"
                         class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                         <i class="fas fa-project-diagram" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
-                        <span x-show="isOpen" class="font-medium">Projects</span>
+                        <span x-show="isOpen" class="font-medium">Program</span>
                     </a>
-    
+                    <!-- Permission Link -->
+                    <a href="{{ route('setPermission.permission') }}"
+                        class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
+                        <i class="fas fa-chart-line" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
+                        <span x-show="isOpen" class="font-medium">Permission</span>
+                    </a>
                     <!-- Analytics Link -->
                     <a href="{{ route('ManageProgram') }}"
                         class="flex items-center px-3 py-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 group">
                         <i class="fas fa-chart-line" :class="isOpen ? 'w-5 mr-3' : 'w-5 mx-auto'"></i>
-                        <span x-show="isOpen" class="font-medium">Manage Programs</span>
+                        <span x-show="isOpen" class="font-medium">Manage Permission</span>
                     </a>
+
                 </div>
-    
+
                 <!-- Settings Section -->
                 <div class="mt-6">
                     <h3 x-show="isOpen" class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -77,7 +83,7 @@
                     </div>
                 </div>
             </nav>
-    
+
             <!-- User Profile -->
             <div class="border-t border-gray-100 p-4 mt-auto">
                 <div class="flex items-center" x-show="isOpen">
@@ -92,7 +98,7 @@
                 </div>
             </div>
         </div>
-    
+
         <!-- Main Content -->
         <div class="flex-1 flex flex-col min-h-screen">
             <!-- Top Header -->
@@ -109,12 +115,12 @@
                     </div>
                 </div>
             </header>
-    
+
             <!-- Page Content -->
             <main class="p-6 flex-grow">
                 @yield('content')
             </main>
-    
+
             <!-- Footer -->
             <footer class="text-black text-center p-4">
                 © Copyright 2025 by <a class="text-blue-500 underline" href="https://www.facebook.com/CJdc2011/"
@@ -126,7 +132,7 @@
             </footer>
         </div>
     </div>
-    
+
 </body>
 
 </html>

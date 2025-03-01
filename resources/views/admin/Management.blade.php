@@ -68,7 +68,8 @@
                 <div class="grid md:grid-cols-2 gap-3 bg-gray-50 p-4 rounded-lg">
                     @foreach($permissions as $permission)
                         <label class="flex items-center space-x-3 p-2 hover:bg-white rounded transition-colors duration-200">
-                            <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" 
+                            <input type="checkbox" name="permissions[]"@if ( $permission->name == 'View') @checked(true) @endif
+                            value="{{ $permission->id }}" 
                                 class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
                             <span class="text-sm text-gray-700">{{ $permission->name }}</span>
                         </label>
