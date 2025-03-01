@@ -4,7 +4,6 @@ use App\Models\RoleProgramPermission;
 use App\Models\Program;
 use App\Models\Permission;
 use Illuminate\Support\Facades\Auth;
-
 if (!function_exists('hasPermission')) {
     function hasPermission($programName, $permissionName)
     {
@@ -33,3 +32,4 @@ if (!function_exists('hasPermission')) {
             ->exists();
     }
 }
+

@@ -37,12 +37,12 @@ class CheckPermission
 
         // ตรวจสอบสิทธิ์ของผู้ใช้
         if (!$request->user()->hasPermission($permission, $program)) {
-            Log::warning('User does not have permission:', [
+            Log::warning('ไม่ได้รับอนุญาต: ผู้ใช้ไม่มีสิทธิ์ :', [
                 'user_id' => $request->user()->id,
                 'permission' => $permission,
                 'program_id' => $program->id,
             ]);
-            abort(403, 'Unauthorized: User does not have permission.');
+            abort(403, 'ไม่ได้รับอนุญาต: ผู้ใช้ไม่มีสิทธิ์.');
         }
 
         // อนุญาตให้เข้าถึง
