@@ -23,7 +23,7 @@ class CheckPermission
         // ตรวจสอบว่าโปรแกรมมีอยู่หรือไม่
         if (!$program) {
             Log::error('Program not found:', ['programName' => $programName]);
-            abort(404, 'Program not found.');
+            abort(404, "ไม่ได้รับอนุญาตเข้าใข้งานโปรแกรม $programName: ผู้ใช้ไม่มีสิทธิ์.");
         }
 
         // Log ข้อมูลสำหรับ Debug
