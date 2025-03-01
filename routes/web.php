@@ -19,6 +19,9 @@ use App\Http\Controllers\Management\ManagementController;
 Route::get('/', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('home');
+// Route::get('/', function () {
+//     return view('home');
+// })->middleware(['auth', 'verified'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('home');
