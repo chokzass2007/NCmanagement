@@ -27,6 +27,10 @@ class ManagementController extends BaseController
     {
         return $programRepository->permission();
     }
+    public function role(ProgramRepository $programRepository)
+    {
+        return $programRepository->role();
+    }
 
     public function destroy(ProgramRepository $programRepository, $id)
     {
@@ -36,10 +40,19 @@ class ManagementController extends BaseController
     {
         return $programRepository->destroyPermission($id);
     }
+    public function destroyRole(ProgramRepository $programRepository, $id)
+    {
+        return $programRepository->destroyRole($id);
+    }
 
     public function storePermission(ProgramRepository $programRepository, Request $request)
     {
         return $programRepository->storePermissions($request);
+    }
+    
+    public function storeRole(ProgramRepository $programRepository, Request $request)
+    {
+        return $programRepository->storeRole($request);
     }
     
     public function ManagementStore(ProgramRepository $programRepository, Request $request)
@@ -50,5 +63,9 @@ class ManagementController extends BaseController
     public function removePermission(ProgramRepository $programRepository, Request $request)
     {
         return $programRepository->removePermission($request);
+    }
+    public function removeRole(ProgramRepository $programRepository, Request $request)
+    {
+        return $programRepository->removeRole($request);
     }
 }

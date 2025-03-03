@@ -54,6 +54,11 @@ class ProgramRepository
         $permission = Permission::all();
         return view('admin.permission', compact('permission'));
     }
+    public function role()
+    {
+        $role = Role::all();
+        return view('admin.role', compact('role'));
+    }
     // Your repository logic here
     public function storePermission(Request $request)
     {
@@ -92,6 +97,11 @@ class ProgramRepository
     {
         Permission::updateOrCreate(['id' => $request->id], ['name' => $request->name]);
         return redirect()->back()->with('success', 'Program saved!');
+    }
+    public function storeRole(Request $request)
+    {
+        Role::updateOrCreate(['id' => $request->id], ['name' => $request->name]);
+        return redirect()->back()->with('success', 'Role saved!');
     }
     public function ManagementStore(Request $request)
     {
@@ -145,6 +155,11 @@ class ProgramRepository
         Permission::find($id)->delete();
         return redirect()->back()->with('success', 'Program deleted!');
     }
+    public function destroyRole($id)
+    {
+        Role::find($id)->delete();
+        return redirect()->back()->with('success', 'Program deleted!');
+    }
     public function removePermission(Request $request)
     {
         $validated = $request->validate([
@@ -152,6 +167,16 @@ class ProgramRepository
         ]);
 
         DB::table('role_program_permission')->where('id', $request->id)->delete();
+
+        return redirect()->back()->with('success', 'Permission removed successfully!');
+    }
+    public function removeRole(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => 'required|exists:role_program_permission,id',
+        ]);
+
+        DB::table('roles')->where('id', $request->id)->delete();
 
         return redirect()->back()->with('success', 'Permission removed successfully!');
     }
