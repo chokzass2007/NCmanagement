@@ -35,7 +35,7 @@ Route::middleware(['auth', 'check.permission:View,Management'])->group(function 
     Route::post('/admin/setPermissions', [ManagementController::class, 'storePermission'])->name('permission.store');
 // Program
     Route::get('/admin/setProgram', [ManagementController::class, 'program'])->name('setPermission.program');
-    Route::post('/admin/setPrograms', [ManagementController::class, 'store'])->name('programs.store');
+    Route::post('/admin/setPrograms', [ManagementController::class, 'storeProgram'])->name('programs.store');
 
     Route::get('/admin/ManageProgram', [ManagementController::class, 'ManageProgram'])->name('ManageProgram');
 

@@ -93,6 +93,11 @@ class ProgramRepository
         Program::updateOrCreate(['id' => $request->id], ['name' => $request->name]);
         return redirect()->back()->with('success', 'Program saved!');
     }
+    public function storePrograms(Request $request)
+    {
+        Program::updateOrCreate(['id' => $request->id], ['name' => $request->name]);
+        return redirect()->back()->with('success', 'Program saved!');
+    }
     public function storePermissions(Request $request)
     {
         Permission::updateOrCreate(['id' => $request->id], ['name' => $request->name]);

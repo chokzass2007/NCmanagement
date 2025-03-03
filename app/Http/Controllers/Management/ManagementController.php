@@ -45,16 +45,21 @@ class ManagementController extends BaseController
         return $programRepository->destroyRole($id);
     }
 
+    public function storeProgram(ProgramRepository $programRepository, Request $request)
+    {
+        return $programRepository->storePrograms($request);
+    }
+
     public function storePermission(ProgramRepository $programRepository, Request $request)
     {
         return $programRepository->storePermissions($request);
     }
-    
+
     public function storeRole(ProgramRepository $programRepository, Request $request)
     {
         return $programRepository->storeRole($request);
     }
-    
+
     public function ManagementStore(ProgramRepository $programRepository, Request $request)
     {
         return $programRepository->ManagementStore($request);
