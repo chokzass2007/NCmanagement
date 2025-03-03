@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($permissions as $perm)
+                    @foreach($results as $perm)
                         <tr class="border-b hover:bg-gray-50 transition">
                             <td class="p-4">{{ $perm->user_name }}</td>
                             <td class="p-4">{{ $perm->role_name }}</td>

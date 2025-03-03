@@ -25,24 +25,22 @@ class ProgramRepository
     }
     public function ManageProgram()
     {
-        $permissions = DB::table('role_program_permission as rpp')
-            ->join('roles', 'rpp.role_id', '=', 'roles.id')
-            ->join('programs', 'rpp.program_id', '=', 'programs.id')
-            ->join('permissions', 'rpp.permission_id', '=', 'permissions.id')
-            ->join('user_roles', 'rpp.role_id', '=', 'user_roles.role_id')
-            ->join('users', 'user_roles.user_id', '=', 'users.id')
-            ->select(
-                'rpp.id',
-                'users.name as user_name',
-                'roles.name as role_name',
-                'programs.name as program_name',
-                'permissions.name as permission_name'
-            )
-            ->orderBy('users.name')
-            ->get();
+        $results = User::leftJoin('role_program_permission', 'users.id', '=', 'role_program_permission.user_id')
+        ->rightJoin('permissions', 'role_program_permission.permission_id', '=', 'permissions.id')
+        ->leftJoin('programs', 'role_program_permission.program_id', '=', 'programs.id')
+        ->join('roles', 'role_program_permission.role_id', '=', 'roles.id')
+        ->select(
+            'role_program_permission.id',
+            'programs.name as Program',
+            'permissions.name as permission',
+            'users.name',
+            'roles.name as Expr1'
+        )
+        ->get();
+    
 
 
-        return view('admin.ManageProgram', compact('permissions'));
+        return view('admin.ManageProgram', compact('results'));
     }
     public function program()
     {
