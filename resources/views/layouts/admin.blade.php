@@ -23,7 +23,7 @@
                     <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
                         <span class="text-white font-bold text-xl">NC</span>
                     </div>
-                    <span class="text-lg font-semibold text-gray-800">NCmanagement</span>
+                    <span class="text-lg font-semibold text-gray-800">NC management</span>
                 </div>
                 <button @click="isOpen = !isOpen"
                     class="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
