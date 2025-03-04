@@ -24,27 +24,28 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth', 'check.permission:View,Management'])->group(function () {
-
+// ----------------------------------- Management ----------------------------------------------------
     Route::get('/admin/Management', [ManagementController::class, 'index'])->name('Management');
     Route::post('/admin/ManagementStore', [ManagementController::class, 'ManagementStore'])->name('ManagementStore');
-//  Role
+
+// ----------------------------------- Role ----------------------------------------------------------
     Route::get('/admin/setRole', [ManagementController::class, 'role'])->name('setrole.role');
     Route::post('/admin/setRoles', [ManagementController::class, 'storeRole'])->name('role.store');
 //  Permission
+// ---------------------------------------------------------------------------------------------------
     Route::get('/admin/setPermission', [ManagementController::class, 'permission'])->name('setPermission.permission');
     Route::post('/admin/setPermissions', [ManagementController::class, 'storePermission'])->name('permission.store');
-// Program
+// ---------------------------------- Program --------------------------------------------------------
     Route::get('/admin/setProgram', [ManagementController::class, 'program'])->name('setPermission.program');
     Route::post('/admin/setPrograms', [ManagementController::class, 'storeProgram'])->name('programs.store');
 
     Route::get('/admin/ManageProgram', [ManagementController::class, 'ManageProgram'])->name('ManageProgram');
-
-    // Delete
+// ---------------------------------- Delete ---------------------------------------------------------
     Route::post('/remove-permission', [ManagementController::class, 'removePermission'])->name('removePermission');
     Route::delete('/admin/programs/{id}', [ManagementController::class, 'destroy'])->name('programs.destroy');
     Route::delete('/admin/permissions/{id}', [ManagementController::class, 'destroyPermission'])->name('permission.destroy');
     Route::delete('/admin/role/{id}', [ManagementController::class, 'destroyRole'])->name('role.destroy');
-    
+    // ------------------------------------------------------------------------------------------------
 });
 
 
