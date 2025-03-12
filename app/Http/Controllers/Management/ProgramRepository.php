@@ -25,16 +25,16 @@ class ProgramRepository
     }
     public function ManageProgram()
     {
-        $results = User::leftJoin('role_program_permission', 'users.id', '=', 'role_program_permission.user_id')
-        ->rightJoin('permissions', 'role_program_permission.permission_id', '=', 'permissions.id')
-        ->leftJoin('programs', 'role_program_permission.program_id', '=', 'programs.id')
-        ->join('roles', 'role_program_permission.role_id', '=', 'roles.id')
+        $results = User::leftJoin('Permission_role_program_permission', 'users.id', '=', 'Permission_role_program_permission.user_id')
+        ->rightJoin('Permission_permissions', 'Permission_role_program_permission.permission_id', '=', 'Permission_permissions.id')
+        ->leftJoin('Permission_programs', 'Permission_role_program_permission.program_id', '=', 'Permission_programs.id')
+        ->join('Permission_roles', 'Permission_role_program_permission.role_id', '=', 'Permission_roles.id')
         ->select(
-            'role_program_permission.id',
-            'programs.name as Program',
-            'permissions.name as permission',
+            'Permission_role_program_permission.id',
+            'Permission_programs.name as Program',
+            'Permission_permissions.name as permission',
             'users.name',
-            'roles.name as Expr1'
+            'Permission_roles.name as Expr1'
         )
         ->get();
     
@@ -66,14 +66,14 @@ class ProgramRepository
         $permissionIds = $request->permissions;
 
         // ลบสิทธิ์เก่าก่อน แล้วเพิ่มสิทธิ์ใหม่
-        DB::table('role_program_permission')
+        DB::table('Permission_role_program_permission')
             ->where('role_id', $roleId)
             ->where('program_id', $programId)
             ->where('user_id', $userId)
             ->delete();
 
         foreach ($permissionIds as $permissionId) {
-            DB::table('role_program_permission')->insert([
+            DB::table('Permission_role_program_permission')->insert([
                 'user_id' => $userId,
                 'role_id' => $roleId,
                 'program_id' => $programId,
@@ -166,20 +166,20 @@ class ProgramRepository
     public function removePermission(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|exists:role_program_permission,id',
+            'id' => 'required|exists:Permission_role_program_permission,id',
         ]);
 
-        DB::table('role_program_permission')->where('id', $request->id)->delete();
+        DB::table('Permission_role_program_permission')->where('id', $request->id)->delete();
 
         return redirect()->back()->with('success', 'Permission removed successfully!');
     }
     public function removeRole(Request $request)
     {
         $validated = $request->validate([
-            'id' => 'required|exists:role_program_permission,id',
+            'id' => 'required|exists:Permission_role_program_permission,id',
         ]);
 
-        DB::table('roles')->where('id', $request->id)->delete();
+        DB::table('Permission_roles')->where('id', $request->id)->delete();
 
         return redirect()->back()->with('success', 'Permission removed successfully!');
     }

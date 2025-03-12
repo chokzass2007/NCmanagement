@@ -25,7 +25,7 @@ class User extends Authenticatable
     protected $guarded = ['id'];
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'user_roles');
+        return $this->belongsToMany(Role::class, 'Permission_user_roles');
     }
 
     public function hasPermission($permission, $program)
