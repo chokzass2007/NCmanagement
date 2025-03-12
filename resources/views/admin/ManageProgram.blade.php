@@ -19,20 +19,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($results as $perm)
+                    @foreach($results as $item)
                         <tr class="border-b hover:bg-gray-50 transition">
-                            <td class="p-4">{{ $perm->user_name }}</td>
-                            <td class="p-4">{{ $perm->role_name }}</td>
-                            <td class="p-4">{{ $perm->program_name }}</td>
+                            <td class="p-4">{{ $item->name }}</td>
+                            <td class="p-4">{{ $item->Expr1 }}</td>
+                            <td class="p-4">{{ $item->Program }}</td>
                             <td class="p-4">
                                 <span class="bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full">
-                                    {{ $perm->permission_name }}
+                                    {{ $item->permission }}
                                 </span>
                             </td>
                             <td class="p-4 text-center">
                                 <form action="{{ route('removePermission') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{ $perm->id }}">
+                                    <input type="hidden" name="id" value="{{ $item->id }}">
                                     <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm transition">
                                         Remove
                                     </button>
