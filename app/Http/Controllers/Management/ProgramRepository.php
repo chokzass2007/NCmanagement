@@ -110,12 +110,13 @@ class ProgramRepository
     {
         $validated = $request->validate([
             'user_id'      => 'required|exists:users,id',
-            'role_id'      => 'required|exists:roles,id',
-            'program_id'   => 'required|exists:programs,id',
+            'role_id'      => 'required|exists:Permission_roles,id',
+            'program_id'   => 'required|exists:Permission_programs,id',
             'permissions'  => 'required|array',
-            'permissions.*' => 'exists:permissions,id',
+            'permissions.*' => 'exists:Permission_permissions,id',
         ]);
 
+        // dd($request->all());
         // ดึงค่าจาก request
         $userId = $request->input('user_id');
         $roleId = $request->input('role_id');
