@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role_program_permission', function (Blueprint $table) {
+        Schema::create('Permission_role_program_permission', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
-            $table->foreignId('program_id')->constrained('programs')->onDelete('cascade');
-            $table->foreignId('permission_id')->constrained('permissions')->onDelete('cascade');
+            $table->foreignId('role_id')->constrained('Permission_roles')->onDelete('cascade');
+            $table->foreignId('program_id')->constrained('Permission_programs')->onDelete('cascade');
+            $table->foreignId('Permission_id')->constrained('Permission_permissions')->onDelete('cascade');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.

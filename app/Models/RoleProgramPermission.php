@@ -9,7 +9,7 @@ class RoleProgramPermission extends Model
     use HasFactory;
 
     protected $table = 'Permission_role_program_permission'; // ชื่อตารางที่ถูกต้อง
-    protected $fillable = ['user_id','role_id', 'program_id', 'permission_id'];
+    protected $fillable = ['user_id','role_id', 'program_id', 'Permission_id'];
     protected $guarded = ['id'];
     public function role()
     {

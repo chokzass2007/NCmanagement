@@ -18,7 +18,7 @@ if (!function_exists('hasPermission')) {
             return false;
         }
 
-        // ดึงค่า permission_id จากชื่อสิทธิ์
+        // ดึงค่า Permission_id จากชื่อสิทธิ์
         $permission = Permission::where('name', $permissionName)->first();
         if (!$permission) {
             return false;
@@ -29,7 +29,7 @@ if (!function_exists('hasPermission')) {
         // ตรวจสอบสิทธิ์ของ role_id ว่ามีสิทธิ์ในโปรแกรมนี้หรือไม่
         return RoleProgramPermission::where('role_id',  $user->roles->pluck('id')->toArray())
             ->where('program_id', $program->id)
-            ->where('permission_id', $permission->id)
+            ->where('Permission_id', $permission->id)
             ->exists();
     }
 }

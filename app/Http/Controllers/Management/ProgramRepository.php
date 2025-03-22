@@ -26,7 +26,7 @@ class ProgramRepository
     public function ManageProgram()
     {
         $results = User::leftJoin('Permission_role_program_permission', 'users.id', '=', 'Permission_role_program_permission.user_id')
-        ->rightJoin('Permission_permissions', 'Permission_role_program_permission.permission_id', '=', 'Permission_permissions.id')
+        ->rightJoin('Permission_permissions', 'Permission_role_program_permission.Permission_id', '=', 'Permission_permissions.id')
         ->leftJoin('Permission_programs', 'Permission_role_program_permission.program_id', '=', 'Permission_programs.id')
         ->join('Permission_roles', 'Permission_role_program_permission.role_id', '=', 'Permission_roles.id')
         ->select(
@@ -77,7 +77,7 @@ class ProgramRepository
                 'user_id' => $userId,
                 'role_id' => $roleId,
                 'program_id' => $programId,
-                'permission_id' => $permissionId,
+                'Permission_id' => $permissionId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -121,7 +121,7 @@ class ProgramRepository
         $userId = $request->input('user_id');
         $roleId = $request->input('role_id');
         $programId = $request->input('program_id');
-        $permissions = $request->input('permissions'); // อาร์เรย์ของ permission_id
+        $permissions = $request->input('permissions'); // อาร์เรย์ของ Permission_id
 
         // ✅ **เช็คว่า user มี role นี้ใน user_roles แล้วหรือยัง**
         $user = User::find($userId);
@@ -133,7 +133,7 @@ class ProgramRepository
         foreach ($permissions as $permissionId) {
             $exists = RoleProgramPermission::where('role_id', $roleId)
                 ->where('program_id', $programId)
-                ->where('permission_id', $permissionId)
+                ->where('Permission_id', $permissionId)
                 ->exists();
             // dd($userId, $roleId, $programId, $permissionId);
             if (!$exists) {
@@ -141,7 +141,7 @@ class ProgramRepository
                     'user_id' => $userId,
                     'role_id' => $roleId,
                     'program_id' => $programId,
-                    'permission_id' => $permissionId,
+                    'Permission_id' => $permissionId,
                 ]);
             }
         }
