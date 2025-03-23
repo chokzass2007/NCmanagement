@@ -29,6 +29,7 @@ class ProgramRepository
         ->rightJoin('Permission_permissions', 'Permission_role_program_permission.Permission_id', '=', 'Permission_permissions.id')
         ->leftJoin('Permission_programs', 'Permission_role_program_permission.program_id', '=', 'Permission_programs.id')
         ->join('Permission_roles', 'Permission_role_program_permission.role_id', '=', 'Permission_roles.id')
+        ->where('Permission_role_program_permission.user_id', '!=', 1)
         ->select(
             'Permission_role_program_permission.id',
             'Permission_programs.name as Program',
@@ -44,12 +45,12 @@ class ProgramRepository
     }
     public function program()
     {
-        $programs = Program::all();
+        $programs = Program::all()->where('id', '!=', 1);
         return view('admin.Program', compact('programs'));
     }
     public function permission()
     {
-        $permission = Permission::all();
+        $permission = Permission::all()->where('id', '!=', 1);
         return view('admin.permission', compact('permission'));
     }
     public function role()
