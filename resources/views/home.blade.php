@@ -9,7 +9,7 @@
                 <p class="text-gray-500 text-center mt-2">Configure role-based access control</p>
                 <div class="container">
                     <h1 class="text-xl font-bold mb-4">Management Page</h1>
-
+<span>hasPermission('Management', 'Delete')</span>
                     @if (hasPermission('Management', 'Delete'))
                     <button class="bg-red-600 text-white px-4 py-2 rounded">Delete</button>
                     @else
