@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\Program;
 use App\Models\Permission;
+use App\Models\UserRole;
 use App\Models\RoleProgramPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -117,7 +118,6 @@ class ProgramRepository
             'permissions.*' => 'exists:Permission_permissions,id',
         ]);
 
-        // dd($request->all());
         // ดึงค่าจาก request
         $userId = $request->input('user_id');
         $roleId = $request->input('role_id');
@@ -147,6 +147,7 @@ class ProgramRepository
             }
         }
 
+        dd($request->all());
         return redirect()->back()->with('success', 'Permissions updated successfully!');
     }
 
