@@ -11,7 +11,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'ผู้ดูแลระบบ NC',
+            'name' => 'ผู้ดูแลระบบ Numchok',
             'email' => 'admin@system.com',
             'password' => Hash::make('123456'), // รหัสผ่านเข้ารหัส
             'created_at' => now(),
