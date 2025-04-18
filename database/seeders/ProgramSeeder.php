@@ -10,7 +10,7 @@ class ProgramSeeder extends Seeder
     public function run()
     {
         DB::table('Permission_programs')->insert([
-            'name' => 'Management',
+            'name' => 'RoleManagement',
             'created_at' => now(),
             'updated_at' => now()
         ]);

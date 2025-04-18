@@ -9,7 +9,7 @@ class PermissionSeeder extends Seeder
 {
     public function run()
     {
-        $permissions = ['View', 'Delete', 'Editor'];
+        $permissions = ['view', 'delete', 'editor'];
         foreach ($permissions as $permission) {
             DB::table('Permission_permissions')->insert([
                 'name' => $permission,
