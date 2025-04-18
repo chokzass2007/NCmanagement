@@ -147,7 +147,7 @@ class ProgramRepository
             }
         }
 
-        dd($request->all());
+        // dd($request->all());
         return redirect()->back()->with('success', 'Permissions updated successfully!');
     }
 
