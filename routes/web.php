@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware(['auth', 'check.permission:View,Management'])->group(function () {
+Route::middleware(['auth', 'check.permission:view,RoleManagement'])->group(function () {
 // ----------------------------------- Management ----------------------------------------------------
     Route::get('/admin/Management', [ManagementController::class, 'index'])->name('Management');
     Route::post('/admin/ManagementStore', [ManagementController::class, 'ManagementStore'])->name('ManagementStore');
