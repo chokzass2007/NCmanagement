@@ -28,6 +28,7 @@ if (!function_exists('hasPermission')) {
 // dd($user->id,$program->id,$permission->id);
         // ตรวจสอบสิทธิ์ของ role_id ว่ามีสิทธิ์ในโปรแกรมนี้หรือไม่
         return RoleProgramPermission::where('role_id',  $user->roles->pluck('id')->toArray())
+        ->where('user_id', $user->id)
             ->where('program_id', $program->id)
             ->where('Permission_id', $permission->id)
             ->exists();
