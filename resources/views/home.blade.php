@@ -4,12 +4,16 @@
 @section('content')
     <div class="flex justify-center items-center min-h-[80vh] bg-gray-50">
         <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-2xl border border-gray-100">
+            
             <div class="mb-8">
                 <h1 class="text-3xl font-bold text-gray-900 text-center">Manage Permissions</h1>
                 <p class="text-gray-500 text-center mt-2">Configure role-based access control</p>
                 <p class="text-gray-500 texet-center mt-2"> How to use : {!!'@'!!}if (hasPermission('RoleManagement', 'view'))
                     menu NC Management</button>
                     !!'@'!!}endif</p>
+                    <div class="flex justify-center">
+                        <img class="w-[300px] h-[300px]" src="img/NCmanangement.png" alt="NC" />
+                    </div>
                 <div class="container">
                     <h1 class="text-xl font-bold mb-4">Management Page ID : {{auth()->user()->id}}</h1>
                     @if (hasPermission('RoleManagement', 'view'))
