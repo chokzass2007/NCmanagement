@@ -38,6 +38,7 @@ class ProgramRepository
             'users.name',
             'Permission_roles.name as Expr1'
         )
+        ->orderBy('Permission_programs.name', 'asc')
         ->get();
     
 
