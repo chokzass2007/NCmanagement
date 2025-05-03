@@ -37,8 +37,8 @@ git clone https://github.com/chokzass2007/NCmanagement.git
 cd NCmanagement
 ```
 
-```bash
 ## ติดตั้ง Dependencies
+```bash
 composer install
 npm install && npm run build
 ```
