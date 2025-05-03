@@ -40,7 +40,7 @@ cd NCmanagement
 ## ติดตั้ง Dependencies
 ```bash
 composer install
-npm install && npm run build
+npm install npm run build
 ```
 
  ตั้งค่า .env
