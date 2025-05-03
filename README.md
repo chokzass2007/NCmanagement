@@ -33,7 +33,7 @@
 ### 1. Clone โปรเจกต์
 
 ```bash
-git clone https://github.com/chokzass2007/NCmanagement.git.git
+git clone https://github.com/chokzass2007/NCmanagement.git
 cd NCmanagement
 ```
 
