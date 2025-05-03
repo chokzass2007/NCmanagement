@@ -81,7 +81,7 @@ Route::middleware(['auth', 'check.permission:View,Management'])->group(function 
 🧪 ตัวอย่างผู้ใช้งาน (Seeder)
 ```bash
 Email: admin@system.com
-Password: 123456
+Password: P@ssw0rd
 ```
 📄 License
 แจกฟรี 100% สามารถนำไปใช้และปรับปรุงได้ตามต้องการ  
