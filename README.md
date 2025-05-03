@@ -36,9 +36,12 @@
 git clone https://github.com/chokzass2007/NCmanagement.git.git
 cd laravel-rbac
 ```
+
+```bash
 ## ติดตั้ง Dependencies
 composer install
 npm install && npm run build
+```
 
  ตั้งค่า .env
 cp .env.example .env
@@ -51,9 +54,14 @@ DB_DATABASE=ชื่อฐานข้อมูล
 DB_USERNAME=ชื่อผู้ใช้
 DB_PASSWORD=รหัสผ่าน
 
-Generate Key และ Migration
+Generate Key
+```bash
 php artisan key:generate
+```
+ และ Migration
+```bash
 php artisan migrate --seed
+```
 
 🔐 วิธีใช้งานระบบสิทธิ์
 1. ตรวจสอบสิทธิ์ใน Controller
@@ -68,10 +76,10 @@ Route::middleware(['auth', 'check.permission:View,Management'])->group(function 
 });
 
 🧪 ตัวอย่างผู้ใช้งาน (Seeder)
+```bash
 Email: admin@system.com
-
 Password: 123456
-
+```
 📄 License
 แจกฟรี 100% สามารถนำไปใช้และปรับปรุงได้ตามต้องการ  
 สร้างโดย [Numchok.j](https://www.facebook.com/CJdc2011)
