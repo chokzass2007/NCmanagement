@@ -35,7 +35,7 @@
 ```bash
 git clone https://github.com/chokzass2007/NCmanagement.git.git
 cd laravel-rbac
-
+```
 ## ติดตั้ง Dependencies
 composer install
 npm install && npm run build
@@ -71,7 +71,7 @@ Route::middleware(['auth', 'check.permission:View,Management'])->group(function 
 Email: admin@system.com
 
 Password: 123456
-```
+
 📄 License
 แจกฟรี 100% สามารถนำไปใช้และปรับปรุงได้ตามต้องการ  
 สร้างโดย [Numchok.j](https://www.facebook.com/CJdc2011)
