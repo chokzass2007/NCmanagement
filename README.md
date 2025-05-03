@@ -44,15 +44,28 @@ npm install npm run build
 ```
 
  ตั้งค่า .env
+ ```bash
 cp .env.example .env
+```
 
 แล้วแก้ไขค่าต่อไปนี้ให้เชื่อมต่อกับ SQL Server:
+```bash
 DB_CONNECTION=sqlsrv
 DB_HOST=127.0.0.1
 DB_PORT=1433
-DB_DATABASE=ชื่อฐานข้อมูล
+DB_DATABASE=NCmanagement
 DB_USERNAME=ชื่อผู้ใช้
 DB_PASSWORD=รหัสผ่าน
+```
+หรือ ให้เชื่อมต่อกับ Mysql
+```bash
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=NCmanagement
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
 Generate Key
 ```bash
