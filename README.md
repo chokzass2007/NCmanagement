@@ -65,15 +65,18 @@ php artisan migrate --seed
 
 🔐 วิธีใช้งานระบบสิทธิ์
 1. ตรวจสอบสิทธิ์ใน Controller
-
+```bash
 if (auth()->user()->hasPermission('View', $program)) {
     // เข้าถึงได้
 }
+```
 
 2. ใช้ Middleware
+ ```bash
 Route::middleware(['auth', 'check.permission:View,Management'])->group(function () {
     Route::get('/management', [ManagementController::class, 'index']);
 });
+```
 
 🧪 ตัวอย่างผู้ใช้งาน (Seeder)
 ```bash
