@@ -34,7 +34,7 @@
 
 ```bash
 git clone https://github.com/chokzass2007/NCmanagement.git.git
-cd laravel-rbac
+cd NCmanagement
 ```
 
 ```bash
