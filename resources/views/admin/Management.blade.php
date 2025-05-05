@@ -23,7 +23,7 @@
                 <select id="user" name="user_id"
                     class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
                     @foreach ($users as $user)
-                        <option value="{{ $user->id }}">🆔 {{ $user->id }} {{ $user->name }} 👥 {{ $user->username }}</option>
+                        <option value="{{ $user->id }}">🆔 {{ $user->EmployeeCode }} {{ $user->name }} 👥 {{ $user->username }}</option>
                     @endforeach
                 </select>
             </div>
