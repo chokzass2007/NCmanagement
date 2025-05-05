@@ -1,4 +1,4 @@
-# 🛡️ ระบบ RBAC (Role-Based Access Control) ด้วย Laravel + SQL Server
+# 🛡️ ระบบ RBAC (Role-Based Access Control) ด้วย Laravel + SQL Server or Mysql
 
 ระบบจัดการสิทธิ์การเข้าถึง (RBAC) สำหรับเว็บแอปพลิเคชัน Laravel โดยสามารถกำหนดสิทธิ์การใช้งานแต่ละโปรแกรม (Module) ตามบทบาท (Role) และผู้ใช้งาน (User) ได้อย่างละเอียด
 
@@ -33,45 +33,70 @@
 ### 1. Clone โปรเจกต์
 
 ```bash
-git clone https://github.com/chokzass2007/NCmanagement.git.git
-cd laravel-rbac
+git clone https://github.com/chokzass2007/NCmanagement.git
+cd NCmanagement
+```
 
 ## ติดตั้ง Dependencies
+```bash
 composer install
-npm install && npm run build
+npm install npm run build
+```
 
  ตั้งค่า .env
+ ```bash
 cp .env.example .env
+```
 
 แล้วแก้ไขค่าต่อไปนี้ให้เชื่อมต่อกับ SQL Server:
+```bash
 DB_CONNECTION=sqlsrv
 DB_HOST=127.0.0.1
 DB_PORT=1433
-DB_DATABASE=ชื่อฐานข้อมูล
+DB_DATABASE=NCmanagement
 DB_USERNAME=ชื่อผู้ใช้
 DB_PASSWORD=รหัสผ่าน
+```
+หรือ ให้เชื่อมต่อกับ Mysql
+```bash
+DB_CONNECTION=mysql
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=NCmanagement
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Generate Key และ Migration
+Generate Key
+```bash
 php artisan key:generate
+```
+ และ Migration
+```bash
 php artisan migrate --seed
+```
 
 🔐 วิธีใช้งานระบบสิทธิ์
 1. ตรวจสอบสิทธิ์ใน Controller
-
+```bash
 if (auth()->user()->hasPermission('View', $program)) {
     // เข้าถึงได้
 }
+```
 
 2. ใช้ Middleware
+ ```bash
 Route::middleware(['auth', 'check.permission:View,Management'])->group(function () {
     Route::get('/management', [ManagementController::class, 'index']);
 });
+```
 
 🧪 ตัวอย่างผู้ใช้งาน (Seeder)
+```bash
 Email: admin@system.com
-
-Password: 123456
-
+Password: P@ssw0rd
+```
 📄 License
-แจกฟรี 100% สามารถนำไปใช้และปรับปรุงได้ตามต้องการ
-สร้างโดย นำโชค จันทะดวง และทีมงาน
+แจกฟรี 100% สามารถนำไปใช้และปรับปรุงได้ตามต้องการ  
+สร้างโดย [Numchok.j](https://www.facebook.com/CJdc2011)
+
